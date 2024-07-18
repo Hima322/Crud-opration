@@ -1,0 +1,28 @@
+<script>
+  fetch("http://localhost:8080/api/users")
+      .then(res => res.json())
+      .then(data => data && (document.getElementById("tbody").innerHTML = data.map((e,i) => (`
+      <tr>
+         <td>${i+1}</td>
+         <td>${e.name}</th>
+         <td>${e.email}</th>
+         <td>${e.gender}</td>
+         <td>${e.status}</td>
+         <td>
+            <a href="#" onclick="handleUpdate('${e._id}')"" class="btn border-shadow update">
+               <span class="text-gradient"><i class="fa fa-pencil-alt"></i></span>
+            </a>
+            <a href="#" onclick="handleDelete('${e._id}')" class="btn border-shadow delete">
+               <span class="text-gradient"><i class="fa fa-times"></i></span>
+            </a>
+         </td>
+      </tr>
+   `))))
+   function handleUpdate(id) {
+      window.location.href = `update_user?id=${id}`;
+}
+</script>
+
+<tbody id="tbody">
+
+</tbody>
